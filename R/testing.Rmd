@@ -1,0 +1,40 @@
+---
+title: "testing_funcs"
+author: "Bella White"
+date: "5/16/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+xmas <- read.csv("https://www.dropbox.com/s/e584pryn8evm1gz/xmas.csv?dl=1")
+xmas
+
+xmas
+```
+
+
+
+```{r}
+pluralize_gift <- function(gift){
+  gift <- gift %>%
+    paste("s", sep="") %>%
+    str_replace("ys$", "ies") %>%
+    str_replace("oo", "ee")
+
+  return(gift)
+}
+
+items <- c("partridge", "dove", "hen", "bird", "ring", "goose", "swan", "maid", "lady", "lord")
+pluralize_gift(items)
+
+```
+
+
+
+
+
