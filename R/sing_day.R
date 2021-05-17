@@ -16,8 +16,8 @@
 sing_day <- function(dataset, line, phrase_col){
 
   phrases <- dataset %>% pull({{phrase_col}})
-
-  #????
-
+  opener <- glue("On the {dataset[line,]$Day.in.Words} day of Christmas, my true love sent to me")
+  phrases <- c(opener, phrases[line:1])
+  return(phrases)
 
 }
