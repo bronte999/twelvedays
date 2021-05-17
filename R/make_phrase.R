@@ -13,6 +13,7 @@
 #' @import glue
 #' @import dplyr
 #' @import purrr
+#' @import english
 #'
 #' @export
 
@@ -23,10 +24,13 @@ make_phrase <- function(num, num_word, item, verb, adjective, location){
   verb <- str_replace_na(verb, "")
   adjective <- str_replace_na(adjective, "")
   location <- str_replace_na(adjective, "")
-  if(num == 1){num_word='a'}
-  phrase <- str_c(num_word, adjective, item, verb, location, sep=" ")
-  str_replace_all(phrase, "  ", " ")
-  return(phrase)
 
+  num_word <- lapply(num, words)
+  if(num == 1){num_word='a'}
+
+  phrase <- str_c(num_word, adjective, item, verb, location, sep=" ") %>%
+    str_replace_all( "  ", " ") %>%
+    str_replace_all(" $", "")
+  return(phrase)
 }
 
