@@ -13,7 +13,6 @@
 #' @import glue
 #' @import dplyr
 #' @import purrr
-#' @import english
 #'
 #' @export
 
