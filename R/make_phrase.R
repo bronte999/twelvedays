@@ -23,14 +23,16 @@ make_phrase <- function(num, num_word, item, verb="", adjective="", location="")
 
   verb <- str_replace_na(verb, "")
   adjective <- str_replace_na(adjective, "")
-  location <- str_replace_na(adjective, "")
+  location <- str_replace_na(location, "")
 
   num_word <- lapply(num, words)
-  if(num == 1){num_word='a'}
+  if(num == 1){
+    if(str_detect(item, "^[aeio]")==TRUE){num_word='an'}
+    else{num_word='a'}}
+
 
   phrase <- str_c(num_word, adjective, item, verb, location, sep=" ") %>%
     str_replace_all( "  ", " ") %>%
     str_replace_all(" $", "")
   return(phrase)
 }
-

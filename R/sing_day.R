@@ -11,11 +11,13 @@
 #' @import dplyr
 #' @import glue
 #' @import purrr
+#' @import english
 #'
 #' @export
 sing_day <- function(dataset, line, phrase_col){
 
   phrases <- dataset %>% pull({{phrase_col}})
+  if(line != 1){phrases[1] = paste("and", phrases[1])}
   opener <- glue("On the {dataset[line,]$Day.in.Words} day of Christmas, my true love sent to me")
   phrases <- c(opener, phrases[line:1])
   return(phrases)
